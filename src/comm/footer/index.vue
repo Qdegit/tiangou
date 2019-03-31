@@ -42,7 +42,7 @@
         width: 100%;
         height: 1rem;
         border-top:1px solid #f1f1f1;
-        background: rgba(255, 255, 255, 0.8);
+        background: #ffffff;
         display: flex;
         position: fixed;
         left: 0;
