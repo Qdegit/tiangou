@@ -5,6 +5,9 @@ import Find from "./find"
 import Shop from "./shop"
 import Over from "./overseas"
 import Mine from "./mine"
+import Login from "./mine/login/login.js"
+import Sign from "./mine/login/sign.js"
+import Myrecommentshop from "./mine/login/myrecommentshop.js"
 
 Vue.use(Router)
 
@@ -19,6 +22,10 @@ export default new Router({
 	  Shop,
 	  Over,
 	  Mine,
+	  Login,
+	  Sign,
+	  Myrecommentshop,
+
     {
       path:"**",
         redirect:"/home"

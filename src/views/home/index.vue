@@ -5,7 +5,8 @@
                 <div class="top">
                     <div class="top_l">
                         <i class="iconfont icon-shangcheng"></i>
-                        <span></span>
+                        <span>{{shopName}}<i class="iconfont ">&#xe60c;
+</i></span>
                     </div>
                     <div class="top_r">
                         <i
@@ -22,11 +23,11 @@
                 </div>
             </header>
             <nav>
-                <div class="show" v-for="item in show">
+                <div class="show" v-for="(item,index) in classList">
                     <h3>
-                        <img :src="item.img" alt="">
+                        <img :src="item.imageUrl" alt="">
                     </h3>
-                    <p>{{item.span}}</p>
+                    <p>{{item.title}}</p>
                 </div>
             </nav>
             <div class="site">
@@ -49,13 +50,13 @@
             </div>
             <div class="commodity">
                 <div class="commodity_t">
-                    <ul><li v-for="item in ul">{{item}}</li></ul>
+                    <ul><li v-for="item in uls">{{item.title}}</li></ul>
                 </div>
                 <div class="commodity_b">
-                    <div class="commodity_box" v-for="(item,index) in box">
-                        <img :src="item.img" alt="">
-                        <p>{{item.p}}</p>
-                        <h6><b>{{item.b}}</b><i :class="item.i"></i></h6>
+                    <div class="commodity_box" v-for="(item,index) in shops">
+                        <img :src="item.data.imageUrl" alt="">
+                        <p>{{item.data.title}}</p>
+                        <h6><b>{{item.data.price | toPrice}}</b><i class="iconfont icon-gouwuche2"></i></h6>
                     </div>
                 </div>
             </div>
@@ -66,9 +67,32 @@
 <script>
 	// @ is an alias to /src
 
-
+    import Vuex from "vuex";
 	export default {
 		name: 'home',
+        created(){
+		    this.getHome()
+            this.getshop()
+        },
+        computed:{
+            ...Vuex.mapState({
+                classList : state => state.home.classList,
+                shopName : state => state.home.shopName,
+                uls : state => state.home.uls,
+                shops : state => state.home.shops
+            })
+        },
+        methods:{
+            ...Vuex.mapActions({
+	            getHome:"home/getHome",
+	            getshop:"home/getshop"
+            })
+        },
+        filters:{
+		    toPrice(val){
+		    	return "￥"+val
+            }
+        },
 		data(){
 			return{
 				is : ["iconfont icon-sousuo1","iconfont icon-gouwuche2","iconfont icon-xiaoxi"],
@@ -78,51 +102,6 @@
 					{i:"iconfont icon-huiyuan",span : "会员权益"},
 					{i:"iconfont icon-fukuanma",span : "结算码"}
 				],
-				show : [
-					{
-						img : "//image1.51tiangou.com/tgou2/img2/market_1.png!y",
-						span : "休闲食品"
-					},
-					{
-						img : "//image1.51tiangou.com/tgou2/img2/market_1.png!y",
-						span : "休闲食品"
-					},
-					{
-						img : "//image1.51tiangou.com/tgou2/img2/market_1.png!y",
-						span : "休闲食品"
-					},
-					{
-						img : "//image1.51tiangou.com/tgou2/img2/market_1.png!y",
-						span : "休闲食品"
-					},
-					{
-						img : "//image1.51tiangou.com/tgou2/img2/market_1.png!y",
-						span : "休闲食品"
-					},
-					{
-						img : "//image1.51tiangou.com/tgou2/img2/market_1.png!y",
-						span : "休闲食品"
-					},
-					{
-						img : "//image1.51tiangou.com/tgou2/img2/market_1.png!y",
-						span : "休闲食品"
-					},
-					{
-						img : "//image1.51tiangou.com/tgou2/img2/market_1.png!y",
-						span : "休闲食品"
-					},
-				],
-				ul : ["精选","休闲食品","饮料饮品","粮油调味","美妆个护","家庭厨卫","母婴儿童","家庭健康"],
-				box:[
-					{img:"//img1.tg-img.com/seller/201805/22/CB5947B6-9630-486E-A2F0-82B5FAC0B266.jpg!y",
-						p :"三元纯牛奶",
-						b :"3.1",
-						i :"iconfont icon-gouwuche2"
-					},
-					{
-						img:"//img1.tg-img.com/seller/201805/22/C965A512-5687-4FEC-B2ED-9C1CF0961316.jpg!y",
-					},{},{}
-				]
 			}
 		},
 		components: {
@@ -132,8 +111,8 @@
 </script>
 <style lang="scss">
     .home{
-        display: flex;
-        flex-direction: column;
+        height: 100%;
+        background: #ffffff;
         overflow: auto;
         padding-bottom: 1rem;
     }
@@ -147,9 +126,18 @@
                 display: flex;
                 padding: 0.2rem;
                 justify-content: space-between;
+                align-items: center;
                 i{font-size: 0.45rem;
                     color: #ffffff;
                     margin: .1rem;
+                }
+                span{
+                    font-size: .28rem;
+                    color: #ffffff;
+                    i{
+                        font-size: 0.4rem;
+                        margin: 0;
+                    }
                 }
             }
             .bot{
@@ -254,6 +242,19 @@
                     display: flex;
                     flex-direction: column;
                     color: #222222;
+                    h6{
+                        display: flex;
+                        justify-content: space-between;
+                        i{
+                            width: 0.4rem;
+                            height: 0.4rem;
+                            background: #222222;
+                            border-radius: 50%;
+                            color: #ffffff;
+                            text-align: center;
+                            line-height: 0.5rem;
+                        }
+                    }
                     img{
                         width: 100%;
                         height: 3.2rem;

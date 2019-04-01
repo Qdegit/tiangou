@@ -1,1 +1,3 @@
 import http from "@/utils/http.js";
+export const getHome = ()=>http("get","api/shopping/market/init.node?cityId=2375&storeId=1617&_=1554110618226");
+export const getshop = ()=>http("get","api/shopping/market/init.node?cityId=2375&storeId=1617&_=1554110618227&source=2&id=1617&name=%E5%A4%A9%E5%AE%A2%E9%9A%86%E8%B6%85%E5%B8%82-%E4%B8%9C%E4%B8%89%E7%8E%AF%E5%BA%97&cityName=%E5%8C%97%E4%BA%AC%E5%B8%82&storeName=%E5%A4%A9%E5%AE%A2%E9%9A%86%E8%B6%85%E5%B8%82-%E4%B8%9C%E4%B8%89%E7%8E%AF%E5%BA%97&marketType=2&tabIndex=0&childIndex=0&currentView=2")

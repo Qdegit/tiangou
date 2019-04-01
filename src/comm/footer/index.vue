@@ -46,7 +46,7 @@
         display: flex;
         position: fixed;
         left: 0;
-        bottom: 0;
+        bottom: -0.01rem;
         .box{
             width: 18%;
             margin: 1%;

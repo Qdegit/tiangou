@@ -1,7 +1,10 @@
 <template>
   <div id="app">
-    <router-view/>
-    <Footer/>
+    <keep-alive>
+      <router-view/>
+    </keep-alive>
+
+    <Footer v-show="this.$route.meta.flag"/>
   </div>
 </template>
 <script>
@@ -15,7 +18,7 @@
 </script>
 <style lang="scss">
 #app {
-
+  height: 100%;
 }
 
 </style>
