@@ -2,7 +2,9 @@
     <div class="mycommend">
         <h2>为你推荐</h2>
         <ul>
-            <li @click="goMyShop(item.id)" v-for="(item,index) in myrecommentshoplistarr">
+            <li @click="goMyShop(item.id)"
+                v-for="(item,index) in this.$store.state.mine.getRecommendListArr"
+                :key="index">
                 <img :src="item.imageUrl" alt=""/>
                 <span>{{item.title}}</span>
                 <div>
@@ -14,28 +16,35 @@
     </div>
 </template>
 <script>
-import axios from "axios"
+import Vuex from "vuex";
 export default {
 // https://midway.51tiangou.com/mine/index/edit.node?auth=false&_=1553818501103 
     created() {
-        this.getMyLists();
+        this.getRecommendList(); 
     },
     data(){
     	return {
-		    myrecommentshoplistarr:[],
+		    
         }
     },
     methods: {
-        getMyLists(){
-            axios.get("/api/mine/index/edit.node").then(({data})=>{
-                console.log(111111,data.data[3].data.items)
-                this.myrecommentshoplistarr=data.data[3].data.items
-            })
-        },
         goMyShop(id){
-            this.$router.push("/myrecommentshop")
-            console.log(222222,id)
-        }
+            this.$router.push("/myrecommentshop?id="+id)
+        },
+        ...Vuex.mapActions({
+            getRecommendList:"mine/getRecommendList",
+        })
+    },
+    computed:{
+    //     ...Vuex.mapState({
+    //         classList : state => state.home.classList,
+    //         shopName : state => state.home.shopName,
+    //         uls : state => state.home.uls,
+    //         shops : state => state.home.shops
+    //     })
+    },
+    watch:{
+
     },
 }
 </script>
@@ -43,6 +52,7 @@ export default {
 .mycommend{
     width: 100%;
     min-height: 2.54rem;
+    margin-bottom: 1rem;
 }
 .mycommend h2{
     width: 100%;
@@ -52,7 +62,6 @@ export default {
 .mycommend ul{
     width: 100%;
     min-height: 2.54rem;
-    border: 1px solid black;
     padding: 0 0.2rem 0.2rem 0.2rem ;
     display: flex;
     flex-wrap: wrap;
@@ -72,7 +81,6 @@ export default {
 .mycommend ul li img{
     width:2.26rem;
     height:2.26rem;
-    border: 1px solid black;
 }
 .mycommend ul li span{
     display: block;
