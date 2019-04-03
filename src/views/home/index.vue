@@ -5,18 +5,24 @@
                 <div class="top">
                     <div class="top_l">
                         <i class="iconfont icon-shangcheng"></i>
-                        <span>{{shopName}}<i class="iconfont ">&#xe60c;
-</i></span>
+                        <router-link
+                                to="/maplist"
+                            tag="span"
+                        >{{shopName}}<i class="iconfont ">&#xe60c;
+</i></router-link>
                     </div>
                     <div class="top_r">
                         <i
-                                v-for="item in is"
+                                v-for="(item,index) in is"
                                 :class="item"
+                                @touchstart="headel(index)"
                         ></i>
                     </div>
                 </div>
                 <div class="bot">
-                    <h3 v-for="(item,index) in bot">
+                    <h3 v-for="(item,index) in bot"
+                        @touchstart="heade(index)"
+                    >
                         <i :class="item.i"></i>
                         <span>{{item.span}}</span>
                     </h3>
@@ -34,17 +40,22 @@
                 <router-link class="site_l"
                              to="/fiery" tag="div"
                 >
-                    <img src="//img1.tg-img.com/seller/201903/18/74B7F7C8-F6C2-426B-A5DB-9C4FCBA3ADA3.jpg!y" alt="">
+                    <img :src="classifyimg1" alt="">
                 </router-link>
                 <div class="site_r">
                     <router-link class="site_r_t"
-                                 to="/Beauty" tag="div"
+                                 to="/makeup" tag="div"
                     >
-                        <img src="//img1.tg-img.com/seller/201903/18/8E7EFEE9-DCDB-4627-B7E8-FD8F000496CB.jpg!y" alt="">
+                        <img :src="classifyimg2" alt="">
                     </router-link>
                     <div class="site_r_b">
-                        <img src="//img1.tg-img.com/seller/201903/18/4AE04B36-5C0D-47B1-B7D0-AD285A0DF5DE.jpg!y" alt="">
-                        <img src="//img1.tg-img.com/seller/201903/18/225CA405-BD91-4792-BFC2-1A54D6A1BA58.jpg!y" alt="">
+                        <router-link
+                                to="/nutrition"
+                                tag="img"
+                         :src="classifyimg3" alt=""/>
+                        <router-link
+                                to="/clean"
+                                tag="img" :src="classifyimg4" alt=""/>
                     </div>
                 </div>
             </div>
@@ -78,6 +89,10 @@
             ...Vuex.mapState({
                 classList : state => state.home.classList,
                 shopName : state => state.home.shopName,
+	            classifyimg1: state => state.home.classifyimg1,
+	            classifyimg2: state => state.home.classifyimg2,
+	            classifyimg3: state => state.home.classifyimg3,
+	            classifyimg4: state => state.home.classifyimg4,
                 uls : state => state.home.uls,
                 shops : state => state.home.shops
             })
@@ -86,7 +101,19 @@
             ...Vuex.mapActions({
 	            getHome:"home/getHome",
 	            getshop:"home/getshop"
-            })
+            }),
+	        heade(index){
+            	switch (index) {
+                    case 0 :
+                    	this.$router.push("/sale")
+	            }
+            },
+	        headel(index){
+            	switch (index) {
+                    case 0 :
+                    	this.$router.push("/search")
+	            }
+            }
         },
         filters:{
 		    toPrice(val){
