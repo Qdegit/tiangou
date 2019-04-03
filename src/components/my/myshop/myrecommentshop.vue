@@ -4,16 +4,19 @@
             <li>
                 <span @click="goBack">&lt;</span>
             </li>
-            <h2>商品</h2>
+            <h2 :class="Inum===1?'action':''" @click=InumFn(1)>商品</h2>
+            <h2 :class="Inum===2?'action':''" @click=InumFn(2)>详情</h2>
             <div class="li">
                 <span class="iconfont" v-html="'&#xe661;'"></span>
                 <span class="iconfont" v-html="'&#xe637;'"></span>
             </div>
         </header>
+        <!-- <Log v-show="Inum===1"></Log>
+        <Gin v-show="Inum===2"></Gin> -->
         <div class="img">
             <img :src="this.$store.state.mine.imageUrl" alt="">
             <div class="productName">
-                <div class="top">20</div>
+                <div class="top">{{this.$store.state.mine.friendTitle}}</div>
                 <div class="cen">18</div>
                 <div class="bottom">
                     <span>
@@ -24,7 +27,7 @@
             </div>
             <div class="flex-container">
                 <p>天狗承诺 · 七天退货</p>
-                <span>&gt;</span>
+                <span class="iconfont">&#xe505;</span>
             </div>
             <div class="size-container">
                 <div class="p">
@@ -32,7 +35,7 @@
                     <span>颜色分类</span>
                     <span>尺寸</span>
                 </div>
-                <span>&gt;</span>
+                <span class="iconfont">&#xe505;</span>
             </div>
             <div class="space-container">
                 <div class="p">
@@ -42,11 +45,11 @@
                         <p>现货</p>
                     </div>
                 </div>
-                <span>&gt;</span>
+                <span class="iconfont">&#xe505;</span>
             </div>
             <div class="shu-container">
                 <p>产品参数</p>
-                <span>&gt;</span>
+                <span class="iconfont">&#xe505;</span>
             </div>
             <div class="pj-container">
                 <div class="p">
@@ -55,7 +58,7 @@
                 </div>
                 <div class="span">
                     <span>平均分：</span>
-                    <span>&gt;</span>
+                    <span class="iconfont">&#xe505;</span>
                 </div>  
             </div>
             <div class="borderv">
@@ -96,9 +99,17 @@ export default {
     created(){
         this.getShopList(this.$route.query.id);
     },
+    data(){
+        return{
+            Inum:1,
+        }
+    },
     methods: {
+        InumFn(i){
+            this.Inum=i
+        },
         goBack(){
-            this.$router.go(-1)
+            this.$router.go(-1);
         },
         ...Vuex.mapActions({
             getShopList:"mine/getShopList",
@@ -118,7 +129,7 @@ header{
     justify-content: space-around;
 }
 header h2{
-    width:4.3rem;
+    width:1.5rem;
     height: 0.88rem;
     text-align: center;
     line-height: 0.88rem;
@@ -193,7 +204,6 @@ header .li span{
 .img .flex-container{
     width: 7.5rem;
     height: 0.88rem;
-    border: 1px solid black;
     background: #fff;
     margin-top: 0.2rem;
     margin-bottom: 0.2rem;
@@ -278,7 +288,6 @@ header .li span{
 .img .borderv{
     width: 7.5rem;
     height:1.44rem;
-    border: 1px solid black;
     background: #fff;
     display: flex;
     align-items: center;
@@ -288,7 +297,6 @@ header .li span{
     width: 4.72rem;
     height: 1rem;
     margin-left: 0.2rem;
-    border: 1px solid yellow;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -380,5 +388,11 @@ footer button:nth-child(3){
     color: #fff;
     border: 0;
     outline: none;
+}
+
+
+
+.action{
+    border-bottom: 2px solid red;
 }
 </style>

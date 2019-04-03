@@ -8,8 +8,8 @@
                 <img :src="item.imageUrl" alt=""/>
                 <span>{{item.title}}</span>
                 <div>
-                    <i>{{item.price}}</i>
-                    <b>{{item.originalPrice}}</b>
+                    <i>{{item.price | money}}</i>
+                    <b>{{item.originalPrice | money}}</b>
                 </div>
             </li>
         </ul>
@@ -29,10 +29,13 @@ export default {
     },
     methods: {
         goMyShop(id){
-            this.$router.push("/myrecommentshop?id="+id)
+            console.log(id)
+            this.$router.push("/myrecommentshop?id="+id);
+            this.getShopList(id)
         },
         ...Vuex.mapActions({
             getRecommendList:"mine/getRecommendList",
+            getShopList:"mine/getShopList",
         })
     },
     computed:{

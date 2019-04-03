@@ -7,6 +7,7 @@ export default{
         getRecommendListArr:[],
         getShopListArr:[],
         imageUrl:"",
+        friendTitle:"",
     },
     mutations:{
         getRecommendList(state,params){
@@ -14,7 +15,8 @@ export default{
         },
         getShopList(state,params){
             state.getShopListArr=params;
-            state.imageUrl=params[2].data.imageUrl
+            state.imageUrl=params[2].data.imageUrl;
+            state.friendTitle=params[1].data.friendTitle;
             console.log(params)
         }
     },
