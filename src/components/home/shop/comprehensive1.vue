@@ -1,4 +1,7 @@
 <template>
+    <div id="con">
+        <Loading v-if="isLoading"/>
+        <BScroll>
     <div class="con">
         <div class="con-shop" v-for="(item,index) in nutionList">
             <div class="con-img">
@@ -11,6 +14,8 @@
             </div>
         </div>
     </div>
+        </BScroll>
+    </div>
 </template>
 
 <script>
@@ -19,6 +24,16 @@
 		name: "comprehensive1",
 		created(){
 			this.getnution()
+		},
+		data(){
+			return{
+				isLoading:true
+			}
+		},
+		watch:{
+			nutionList(){
+				this.isLoading = false;
+			}
 		},
 		computed:{
 			...Vuex.mapState({
@@ -34,10 +49,11 @@
 </script>
 
 <style scoped lang="scss">
-    div{
+    #con{
         width: 100%;
         height: 100%;
         .con{
+            padding-top: .77rem;
             .con-shop{
                 padding: .1rem .1rem .1rem .2rem;
                 width: 7.6rem;

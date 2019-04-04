@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Loading v-if="isLoading"/>
         <div class="con">
             <div class="con-shop" v-for="(item,index) in priceLista">
                 <div class="con-img">
@@ -22,10 +23,20 @@
 		created(){
 			this.getpricea()
 		},
+		data(){
+			return{
+				isLoading:true
+			}
+		},
 		computed:{
 			...Vuex.mapState({
 				priceLista : state => state.home.priceLista,
 			})
+		},
+		watch:{
+			priceLista(){
+				this.isLoading = false;
+			}
 		},
 		methods:{
 			...Vuex.mapActions({
@@ -40,6 +51,7 @@
         width: 100%;
         height: 100%;
         .con{
+            padding-top: .77rem;
             .con-shop{
                 padding: .1rem .1rem .1rem .2rem;
                 width: 7.6rem;

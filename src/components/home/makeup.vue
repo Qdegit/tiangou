@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="box">
         <Header title="美妆个护"/>
         <section>
             <nav>
@@ -67,13 +67,22 @@
 </script>
 
 <style scoped lang="scss">
+    .box{
+        height: 100%;
+        padding-top: .88rem;
+    }
     section {
         height: 100%;
         width: 100%;
-        padding-top: .88rem;
-        overflow: auto;
+
+        /*overflow: auto;*/
         nav{
+            position: fixed;
+            left: 0;
+            top: .88rem;
+            z-index: 4;
             height: .77rem;
+            background: #ffffff;
             border-bottom: 1px solid #cccccc;
             display: flex;
             .nav_l{

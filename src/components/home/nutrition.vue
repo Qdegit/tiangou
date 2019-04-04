@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="box">
         <Header title="营养保健"/>
         <section>
             <nav>
@@ -70,15 +70,24 @@
 </script>
 
 <style scoped lang="scss">
+    .box{
+        height: 100%;
+        padding-top: .88rem;
+    }
     section {
         height: 100%;
         width: 100%;
-        padding-top: .88rem;
-        overflow: auto;
+        /*padding-top: .88rem;*/
+        /*overflow: auto;*/
         nav{
+            position: fixed;
+            left: 0;
+            top: .88rem;
+            z-index: 4;
             height: .77rem;
             border-bottom: 1px solid #cccccc;
             display: flex;
+            background: #ffffff;
             .nav_l{
                 width: 5rem;
                 display: flex;

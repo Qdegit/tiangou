@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="box">
         <Header title="家具清洁"/>
         <section>
             <nav>
@@ -69,11 +69,15 @@
 </script>
 
 <style scoped lang="scss">
+    .box{
+        height: 100%;
+        padding-top: .88rem;
+    }
     section {
         height: 100%;
         width: 100%;
-        padding-top: .88rem;
-        overflow: auto;
+        /*padding-top: .88rem;*/
+        /*overflow: auto;*/
         nav{
             height: .77rem;
             border-bottom: 1px solid #cccccc;

@@ -2,8 +2,11 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './routers/index'
 import store from './store/index'
-Vue.config.productionTip = false
-
+import BScroll from "@/comm/BScroll"
+import Loading from "@/comm/loading"
+Vue.config.productionTip = false;
+Vue.component("BScroll",BScroll);
+Vue.component("Loading",Loading);
 new Vue({
   router,
   store,

@@ -1,5 +1,8 @@
 <template>
-    <div>
+
+    <div id="con">
+        <Loading v-if="isLoading"/>
+        <BScroll>
         <div class="con">
             <div class="con-shop" v-for="(item,index) in makeupList">
                 <div class="con-img">
@@ -12,15 +15,27 @@
                 </div>
             </div>
         </div>
+        </BScroll>
     </div>
+
 </template>
 
 <script>
 	import Vuex from "vuex";
 	export default {
 		name: "comprehensive",
+        data(){
+		    return{
+			    isLoading:true
+            }
+        },
 		created(){
 			this.getmakeup()
+		},
+		watch:{
+			makeupList(){
+				this.isLoading = false;
+			}
 		},
 		computed:{
 			...Vuex.mapState({
@@ -36,10 +51,11 @@
 </script>
 
 <style scoped lang="scss">
-    div{
-        width: 100%;
+    #con{
         height: 100%;
+        width: 100%;
         .con{
+            padding-top: .77rem;
             .con-shop{
                 padding: .1rem .1rem .1rem .2rem;
                 width: 7.6rem;

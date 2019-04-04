@@ -38,6 +38,7 @@
         align-items: center;
         color: #404040;
         position: fixed;
+        z-index: 5;
         left: 0;
         top: 0;
         i{

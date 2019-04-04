@@ -11,12 +11,14 @@ import {
 	getpricea,
 	getvolumeb,
 	getpriceb,
+	getshopa,
 } from "@/api/home"
 export default {
 	state:{
 		classList :[],
 		uls : [],
 		shops : [],
+		shopsa:[],
 		classifyimg1:"",
 		classifyimg2:"",
 		classifyimg3:"",
@@ -47,6 +49,11 @@ export default {
 			state.shops = params;
 			state.shops.splice(0,1);
 			state.shops.pop()
+		},
+		getshopa(state,params) {
+			state.shopaa = params;
+			state.shopsa.pop();
+			// state.shopsa.concat(state.shops)
 		},
 		getmakeup(state,params){
 			 state.makeupList = params;
@@ -136,6 +143,11 @@ export default {
 		async getpriceb({commit},params){
 			let data = await getpriceb(params);
 			commit("getpriceb",data.data)
+		},
+		async getshopa({commit},params){
+			let data = await getshopa(params);
+			console.log(data)
+			commit("getshopa",data.data)
 		}
 	},
 	namespaced: true

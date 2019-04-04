@@ -40,6 +40,7 @@
         width: 100%;
         height: 100%;
         .con{
+            padding-top: .77rem;
             .con-shop{
                 padding: .1rem .1rem .1rem .2rem;
                 width: 7.6rem;
