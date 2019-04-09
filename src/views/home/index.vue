@@ -66,11 +66,15 @@
                     <ul><li v-for="item in uls">{{item.title}}</li></ul>
                 </div>
                 <div class="commodity_b">
-                    <div class="commodity_box" v-for="(item,index) in shops ? shops : shopsa">
+                    <router-link
+                            to="/detailsPage"
+                            tag="div"
+                            class="commodity_box" v-for="(item,index) in shops ? shops : shopsa">
                         <img :src="item.data.imageUrl" alt="">
                         <p>{{item.data.title}}</p>
                         <h6><b>{{item.data.price | toPrice}}</b><i class="iconfont icon-gouwuche2"></i></h6>
-                    </div>
+                    </router-link>
+
                 </div>
             </div>
         </div>

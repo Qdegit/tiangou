@@ -15,7 +15,7 @@ import Mine from "./mine"
 import Login from "./mine/login/login.js"
 import Sign from "./mine/login/sign.js"
 import Myrecommentshop from "./mine/login/myrecommentshop.js"
-
+import detailsPage from "./home/detailsPage"
 Vue.use(Router)
 
 export default new Router({
@@ -39,6 +39,7 @@ export default new Router({
 	  Fiery,
 	  Search,
 	  Maplist,
+	  detailsPage,
     {
       path:"**",
         redirect:"/home"

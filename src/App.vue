@@ -3,7 +3,6 @@
     <keep-alive>
       <router-view/>
     </keep-alive>
-
     <Footer v-show="this.$route.meta.flag"/>
   </div>
 </template>
