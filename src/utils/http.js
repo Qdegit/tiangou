@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import Qs from "qs";
 const http = axios.create({
 	//baseUrl:""
 	timeout:5000,
@@ -8,7 +8,7 @@ const http = axios.create({
 
 http.interceptors.request.use((config)=>{
 	if(config.method == "post"){
-		config.data = config.data;
+		config.data = Qs.stringify(config.data);
 	}else if(config.method == "get"){
 		config.params = {...config.data};
 	}
