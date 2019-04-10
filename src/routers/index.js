@@ -16,6 +16,7 @@ import Login from "./mine/login/login.js"
 import Sign from "./mine/login/sign.js"
 import Myrecommentshop from "./mine/login/myrecommentshop.js"
 import detailsPage from "./home/detailsPage"
+import ctily from "./ctily"
 Vue.use(Router)
 
 export default new Router({
@@ -24,22 +25,23 @@ export default new Router({
       path: '/',
       redirect:"/home"
     },
-	  Home,
-	  Find,
-	  Shop,
-	  Over,
-	  Mine,
-	  Login,
-	  Sign,
-	  Myrecommentshop,
-	  sale,
-	  makeup,
-	  Nutrition,
-	  Clean,
-	  Fiery,
-	  Search,
-	  Maplist,
-	  detailsPage,
+      Home,
+      Find,
+      Shop,
+      Over,
+      Mine,
+      Login,
+      Sign,
+      Myrecommentshop,
+      sale,
+      makeup,
+      Nutrition,
+      Clean,
+      Fiery,
+      Search,
+      Maplist,
+      detailsPage,
+      ctily,
     {
       path:"**",
         redirect:"/home"

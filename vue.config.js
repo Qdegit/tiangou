@@ -7,7 +7,14 @@ module.exports = {
 				pathRewrite:{
 					"^/api":""
 				}
-			}
+			},
+            "/capi":{
+                target:"https://base.51tiangou.com",
+                changeOrigin:true,
+                pathRewrite:{
+                    "^/capi":""
+                }
+            },
 		}
 	}
 }

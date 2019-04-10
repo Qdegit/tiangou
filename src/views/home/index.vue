@@ -66,14 +66,13 @@
                     <ul><li v-for="item in uls">{{item.title}}</li></ul>
                 </div>
                 <div class="commodity_b">
-                    <router-link
-                            to="/detailsPage"
-                            tag="div"
-                            class="commodity_box" v-for="(item,index) in shops ? shops : shopsa">
+                    <div
+                            class="commodity_box" v-for="(item,index) in shops"
+                            @tap="fn(item.data.id)">
                         <img :src="item.data.imageUrl" alt="">
                         <p>{{item.data.title}}</p>
                         <h6><b>{{item.data.price | toPrice}}</b><i class="iconfont icon-gouwuche2"></i></h6>
-                    </router-link>
+                    </div>
 
                 </div>
             </div>
@@ -134,6 +133,9 @@
                     case 0 :
                     	this.$router.push("/search")
 	            }
+            },
+            fn(id){
+                this.$router.push("/detailsPage?id="+id)
             }
         },
         filters:{

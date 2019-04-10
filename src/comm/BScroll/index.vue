@@ -14,7 +14,7 @@
 				tap:true,
 				pullUpLoad: true
             });
-            console.log(this.scroll)
+            //console.log(this.scroll)
 
         },
         methods:{
@@ -23,13 +23,26 @@
 			        this.$store.dispatch("home/getshop");
 		        });
 	        },
+
 	        update(){
 		        //当数据加载完毕以后
 		        this.scroll.finishPullUp();
 	        },
 	        getih(){
 		        this.scroll.refresh();
-	        }
+	        },
+            hande(t) {
+                this.scroll.scrollTo(0, -t, 500);
+            },
+            loding() {
+                this.scroll.on("pullingUp", () => {
+                    this.$store.dispatch("find/findactions");
+                    //console.log(1);
+                });
+            },
+            chenok(){
+                this.scroll.finishPullUp();
+            }
         }
 	}
 </script>
@@ -37,6 +50,6 @@
 <style scoped>
     .wrapper{
         height: 100%;
-        position: absolute;
+
     }
 </style>
