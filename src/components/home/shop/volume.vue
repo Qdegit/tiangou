@@ -3,7 +3,8 @@
         <Loading v-if="isLoading"/>
         <BScroll>
         <div class="con">
-            <div class="con-shop" v-for="(item,index) in volumeList">
+            <div class="con-shop" v-for="(item,index) in volumeList"
+                 @tap="fn(item.data.id)">
                 <div class="con-img">
                     <img :src="item.data.imageUrl" alt="">
                 </div>
@@ -44,6 +45,9 @@
 			...Vuex.mapActions({
 				getvolume:"home/getvolume",
 			}),
+            fn(id){
+                this.$router.push("/detailsPage?id="+id)
+            }
 		}
 	}
 </script>

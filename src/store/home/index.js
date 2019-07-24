@@ -12,6 +12,7 @@ import {
 	getvolumeb,
 	getpriceb,
 	getshopa,
+    getDetail
 } from "@/api/home"
 export default {
 	state:{
@@ -34,6 +35,9 @@ export default {
 		priceLista : [],
 		volumeListb : [],
 		priceListb : [],
+        detailList : [],
+        detailImg : [],
+        detailChil : [],
 	},
 	mutations:{
 		getHome(state,params){
@@ -90,7 +94,12 @@ export default {
 		getpriceb(state,params){
 			state.priceListb = params;
 			state.priceListb.pop()
-		}
+		},
+        getDetail(state,params){
+            state.detailImg = params[1].data;
+		    state.detailList = params[4].data;
+            state.detailChil = params[2].data
+        }
 	},
 	actions:{
 		async getHome({commit},params){
@@ -146,9 +155,14 @@ export default {
 		},
 		async getshopa({commit},params){
 			let data = await getshopa(params);
-			console.log(data)
+			// console.log(data)
 			commit("getshopa",data.data)
-		}
+		},
+		async getDetail({commit},params){
+		    let data = await getDetail(params);
+		    // console.log(data.data)
+            commit("getDetail",data.data)
+        }
 	},
 	namespaced: true
 }

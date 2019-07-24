@@ -4,7 +4,9 @@
         <Loading v-if="isLoading"/>
         <BScroll>
         <div class="con">
-            <div class="con-shop" v-for="(item,index) in makeupList">
+            <div class="con-shop" v-for="(item,index) in makeupList"
+                 @tap="fn(item.data.id)"
+            >
                 <div class="con-img">
                     <img :src="item.data.imageUrl" alt="">
                 </div>
@@ -25,8 +27,8 @@
 	export default {
 		name: "comprehensive",
         data(){
-		    return{
-			    isLoading:true
+            return{
+                isLoading:true
             }
         },
 		created(){
@@ -46,6 +48,9 @@
 			...Vuex.mapActions({
 				getmakeup:"home/getmakeup",
 			}),
+            fn(id){
+                this.$router.push("/detailsPage?id="+id)
+            }
 		}
 	}
 </script>

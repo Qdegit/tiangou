@@ -3,7 +3,8 @@
         <Loading v-if="isLoading"/>
         <BScroll>
         <div class="con">
-            <div class="con-shop" v-for="(item,index) in priceList">
+            <div class="con-shop" v-for="(item,index) in priceList"
+                 @tap="fn(item.data.id)">
                 <div class="con-img">
                     <img :src="item.data.imageUrl" alt="">
                 </div>
@@ -44,6 +45,9 @@
 			...Vuex.mapActions({
 				getprice:"home/getprice",
 			}),
+            fn(id){
+                this.$router.push("/detailsPage?id="+id)
+            }
 		}
 	}
 </script>

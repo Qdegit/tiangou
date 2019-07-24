@@ -13,3 +13,4 @@ export const getvolumea = ()=>http("get","api/search/result/init.node?tabIndex=1
 export const getpricea = ()=>http("get","api/search/result/init.node?tabIndex=3&storeIds=1617&topBizCategoryId=7&startNum=0&pageCount=10&type=overseas&range=all&orderColumn=price&orderType=desc&_=1554297182022&childIndex=0&currentView=3");
 export const getvolumeb = ()=>http("get","api/search/result/init.node?tabIndex=1&storeIds=1617&topBizCategoryId=11&startNum=0&pageCount=10&type=overseas&range=all&orderColumn=soldQty&orderType=desc&_=1554297740069&childIndex=0&currentView=3");
 export const getpriceb = ()=>http("get","api/search/result/init.node?tabIndex=3&storeIds=1617&topBizCategoryId=11&startNum=0&pageCount=10&type=overseas&range=all&orderColumn=price&orderType=desc&_=1554297740081&childIndex=0&currentView=3");
+export const getDetail = (id)=>http("get","api/product/listing/init.node?id="+id)

@@ -1,6 +1,7 @@
 <template>
     <div class="con">
-        <div class="con-shop" v-for="(item,index) in cleanList">
+        <div class="con-shop" v-for="(item,index) in cleanList"
+             @click="fn(item.data.id)">
             <div class="con-img">
                 <img :src="item.data.imageUrl" alt="">
             </div>
@@ -29,6 +30,9 @@
 			...Vuex.mapActions({
 				getclean:"home/getclean",
 			}),
+            fn(id){
+                this.$router.push("/detailsPage?id="+id)
+            }
 		}
 	}
 </script>
